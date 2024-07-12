@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>좋아요</title>
+</head>
+<body>
+    <button onclick="getUsers()">클릭</button>
+    <div id="userInfo"></div>
+
+    <script>
+        function getUser(){
+            const config ={
+                method : "get"
+            };
+
+            fetch("https://jsonplaceholder.typicode.com/users/1",config)
+                .then(response => response.json())
+                .then(data => {
+
+                    const name = document.createElement("div");
+                    const email = document.createElement("div");
+                    const phone = document.createElement("div");
+                    name.textContent = data.name;
+                    email.textContent = data.email;
+                    phone.textContent =data.phone;
+                    // div 를 넣어준다
+                    const userInfo =
+                document.getElementById("userInfo");
+                    userInfo.appendChild(name);
+                    userInfo.appendChild(email);
+                    userInfo.appendChild(phone)
+
+                })
+                .catch(error => console.log("fetch 에러"));
+        }
+    </script>
+<!--    script 코드리뷰-->
+<!--    1. fetch - 매개변수로 전달한 URL 과 옵션 객체를 통해 HTTP 통신을 수행한다-->
+<!--    2. then - 요청작업이 완료된 후 then 매서드 내부에서 다음 수행할 작업을 입력. -->
+<!--    3. catch - 오류가 발생하면 실행-->
+
+
+</body>
+</html>

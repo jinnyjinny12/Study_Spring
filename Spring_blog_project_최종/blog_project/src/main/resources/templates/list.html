@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>전체조회</title>
+    <link rel="stylesheet" href="/css/blog3.css" />
+    <script src="/js/blog3.js" defer></script>
+
+</head>
+<body>
+<h1>전체조회_list</h1>
+
+<div class="header-row">
+    <div scope="col">NO</div>
+    <div scope="col">제목</div>
+    <div scope="col">좋아요</div>
+    <div scope="col">좋아요 클릭수</div>
+</div>
+<div class="post-list">
+
+    <div class="post-row" th:each="post : ${postList}">
+        <div scope="row">
+            <span th:text="${post.id}"></span>
+        </div>
+        <div>
+            <a th:href="@{'/posts/' + ${post.id}}">
+                <span th:text="${post.title}"></span>
+            </a>
+        </div>
+        <div>
+
+            <button id="likeButton-${post.id}" type="button" th:attr="data-id=${post.id}" class="like-button">좋아요 </button>
+
+
+        </div>
+        <div>
+            <span th:id="|likeCount-${post.id}|" class="like-count" th:text="${likeCounts[post.id]}">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div>
+    <a th:href="@{/posts}" role="button"> 글쓰기 </a>
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
