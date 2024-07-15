@@ -38,7 +38,8 @@ public class LikeService {
 
         List<LikeEntity> likeEntities = likeRepository.findByBlog(blogEntity);
 
-            LikeEntity likeEntity;
+             LikeEntity likeEntity;
+
             if (likeEntities.isEmpty()) {
                 // 만약 좋아요 엔티티가 없으면 좋아요 엔터티를 생성하고, 좋아요 수를 1 증가시켜라
                 likeEntity = new LikeEntity(blogEntity, 1);
@@ -55,14 +56,7 @@ public class LikeService {
 
 
     public int getLikeCountByBlogId(Integer id) {
-//        // 블로그가 존재하지 않으면 예외를 발생시킵니다.
-//        blogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
-//
-//        List<LikeEntity> likelist = likeRepository.getLikesByLikeid(id);
-//        int result = likelist.get(id).getLikes();
-//        // 블로그에 대한 모든 좋아요 수를 가져옵니다.
-//        System.out.println(result);
-//        return result;
+
 
         BlogEntity blogEntity = blogRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Blog not found"));
@@ -72,7 +66,7 @@ public class LikeService {
             return 0;
         }
 
-        // likeEntity 의 첫번째 요소인 0 을
+        // likeEntity 의 첫번째 요소인 0 을 반환 - 즉 테이블에서 첫번쨰 열.
         int result = likeEntities.get(0).getLikes();
         System.out.println(result);
         return result;
